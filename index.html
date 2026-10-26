@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Back End of Open Silicon: Custody, Provenance, Trust</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/theme.css">
+</head>
+<body>
+
+<div id="stage-wrap">
+<div id="stage">
+
+  <!-- ================================================= 01 TITLE -->
+  <section class="slide plate" data-sect="open" data-title="Title">
+    <div class="plate-bg" style="background-image:url('assets/img/wafer-dies-closeup.jpg')"></div>
+    <div class="eyebrow rise"><span class="tag">Funding proposal</span><span class="rule"></span><span>2026</span></div>
+    <div class="body stack">
+      <h1 class="rise">The Back End<br>of <em>Open Silicon</em></h1>
+      <p class="rise" style="font-family:var(--mono);font-size:34px;letter-spacing:.18em;text-transform:uppercase;color:var(--raw-mono-1);margin-top:-8px">Custody · Provenance · Trust</p>
+      <p class="lead dim rise">From wafer to board: sort, package, test and ship for low-volume, high-mix chips. Built to suit.</p>
+      <div class="rise" style="max-width:1500px">
+        <svg class="fig title-track" viewBox="0 0 1500 150" role="img" aria-label="Ten production steps; the last four are highlighted as the last mile">
+          <line class="road" x1="30" y1="60" x2="870" y2="60"/>
+          <line class="road last" x1="870" y1="60" x2="1470" y2="60"/>
+          <g>
+            <circle class="stop" cx="30"  cy="60" r="16"/><circle class="stop" cx="170" cy="60" r="16"/>
+            <circle class="stop" cx="310" cy="60" r="16"/><circle class="stop" cx="450" cy="60" r="16"/>
+            <circle class="stop" cx="590" cy="60" r="16"/><circle class="stop" cx="730" cy="60" r="16"/>
+            <circle class="stop last" cx="870" cy="60" r="20"/><circle class="stop last" cx="1070" cy="60" r="20"/>
+            <circle class="stop last" cx="1270" cy="60" r="20"/><circle class="stop last" cx="1470" cy="60" r="20"/>
+          </g>
+          <text class="small" x="30" y="115" text-anchor="middle">DESIGN</text>
+          <text class="small" x="310" y="115" text-anchor="middle">FAB</text>
+          <text class="small" x="730" y="115" text-anchor="middle">DICE</text>
+          <text class="small" x="870" y="115" text-anchor="middle" style="fill:var(--raw-mono-1)">SORT</text>
+          <text class="small" x="1070" y="115" text-anchor="middle" style="fill:var(--raw-mono-1)">PACKAGE</text>
+          <text class="small" x="1270" y="115" text-anchor="middle" style="fill:var(--raw-mono-1)">TEST</text>
+          <text class="small" x="1470" y="115" text-anchor="middle" style="fill:var(--raw-mono-1)">SHIP</text>
+          <path class="bracket" d="M850 22 V10 H1490 V22"/>
+          <text class="small" x="1170" y="0" text-anchor="middle" style="fill:var(--raw-mono-1)">THE LAST MILE</text>
+          <circle class="token" r="9">
+            <animateMotion dur="7s" repeatCount="indefinite" path="M30 60 H1470"/>
+          </circle>
+        </svg>
+      </div>
+      <p class="rise" style="font-family:var(--mono);font-size:24px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)"><strong>Andrew Wingate</strong> &nbsp;·&nbsp; Evezor Inc. &nbsp;·&nbsp; wafer.space</p>
+    </div>
+    <aside class="notes">
+      <p>Hi, I'm Andrew Wingate with Evezor. This is a proposal for the back end of open silicon: everything that happens to a chip after the wafer comes out of the fab. I call it the last mile.</p>
+      <p>It's also about trust: knowing who has held a chip, being able to prove where it came from, and being able to tell it from a copy.</p>
+      <p>Open silicon has solved the front end, design and fab. Getting chips off the wafer and onto a board is still the hard part, and that's what this is about.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 02 WORKING TOGETHER -->
+  <section class="slide" data-sect="open" data-title="We've been working together all along">
+    <div class="eyebrow rise"><span class="tag">Not a cold pitch</span><span class="rule"></span><span>wafer.space Run 1 → Run 2</span></div>
+    <div class="body cols together">
+      <div class="stack">
+        <h2 class="rise">We've been working together <em>all along.</em></h2>
+        <div class="rise">
+          <figure class="shot reticle"><img src="assets/img/run2-reticle.jpg" alt="Part of the wafer.space Run 2 reticle: dozens of designs sharing one wafer, Cloneless along the bottom"></figure>
+          <p class="fig-cap">wafer.space Run 2 reticle</p>
+        </div>
+        <ul class="plain rise">
+          <li>I built the sorter that took your chips <strong>off the wafer and into tape.</strong></li>
+          <li>I've been part of the wafer.space project from the start.</li>
+        </ul>
+      </div>
+      <div class="chip-pair rise">
+        <div class="card hue">
+          <figure class="shot"><img src="assets/img/cloneless1-die.jpg" alt="Cloneless1 die"></figure>
+          <span class="k">Run 1</span>
+          <h4>Cloneless1</h4>
+          <p class="dim">A cryptographic ASIC with a <strong>PUF-protected</strong> long-term secret. You sponsored it.</p>
+        </div>
+        <div class="card hue">
+          <figure class="shot"><img src="assets/img/cloneless2-die.jpg" alt="Cloneless2 die"></figure>
+          <span class="k">Run 2</span>
+          <h4>Cloneless2</h4>
+          <p class="dim">The next chip, on the next run. Also yours.</p>
+        </div>
+      </div>
+    </div>
+    <aside class="notes">
+      <p>This isn't a cold pitch. Your team sponsored Cloneless1 on wafer.space's first run, and Cloneless2 is on Run 2.</p>
+      <p>I built the sorting machine that took those chips off the wafer and put them into tape for you, and I've been part of wafer.space the whole way.</p>
+      <p>Cloneless uses a PUF to protect a key. My chip uses a PUF too, for a different reason. I'll get to it, but first, here's where I want this to go.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 03 ASK LADDER (up front: what I want, before the details; .calm = 1/5 speed) -->
+  <section class="slide" data-sect="ask" data-title="The ask: achievable goals, built to suit" data-tiers="A B C D E">
+    <div class="eyebrow rise"><span class="tag">The ask</span><span class="rule"></span><span>Five tiers · each builds on the one before</span></div>
+    <div class="body cols ask-grid">
+      <div class="stack ask-lede rise">
+        <h2>I have a long list of goals <em>and will build to suit.</em></h2>
+        <p class="lead dim">I don't know your risk tolerance, but I have large dreams.</p>
+        <p>Every tier delivers on its own and sets up the next. Fund as far down the ladder as you like.</p>
+        <p class="eco-line">The grant lifts the <strong>whole open-silicon ecosystem</strong>, not one project.</p>
+      </div>
+      <div class="ladder calm rise">
+        <svg class="wires" viewBox="0 0 200 752" aria-hidden="true">
+          <path class="trace" d="M30 68 V145 H58 V299 H86 V453 H114 V607 H142 V684"/>
+          <path class="trace flow" d="M30 98 V145 H58 V192 M58 252 V299 H86 V346 M86 406 V453 H114 V500 M114 560 V607 H142 V654"/>
+          <circle class="node" cx="30" cy="145" r="3.5"/><circle class="node" cx="58" cy="145" r="3.5"/>
+          <circle class="node" cx="58" cy="299" r="3.5"/><circle class="node" cx="86" cy="299" r="3.5"/>
+          <circle class="node" cx="86" cy="453" r="3.5"/><circle class="node" cx="114" cy="453" r="3.5"/>
+          <circle class="node" cx="114" cy="607" r="3.5"/><circle class="node" cx="142" cy="607" r="3.5"/>
+          <circle class="pulse" r="7"/>
+        </svg>
+
+        <div class="tier" style="--i:0;--c:var(--A)">
+          <span class="chip lg A">A</span>
+          <div class="tcard">
+            <svg class="ico puf" viewBox="0 0 200 100" aria-hidden="true">
+              <g style="--r:0"><rect class="bit on" x="12" y="6" width="8" height="8"/><rect class="bit" x="23" y="6" width="8" height="8"/><rect class="bit on" x="34" y="6" width="8" height="8"/><rect class="bit on" x="45" y="6" width="8" height="8"/><rect class="bit" x="56" y="6" width="8" height="8"/><rect class="bit on" x="67" y="6" width="8" height="8"/></g>
+              <g style="--r:1"><rect class="bit" x="12" y="17" width="8" height="8"/><rect class="bit on" x="23" y="17" width="8" height="8"/><rect class="bit on" x="34" y="17" width="8" height="8"/><rect class="bit" x="45" y="17" width="8" height="8"/><rect class="bit on" x="56" y="17" width="8" height="8"/><rect class="bit" x="67" y="17" width="8" height="8"/></g>
+              <g style="--r:2"><rect class="bit on" x="12" y="28" width="8" height="8"/><rect class="bit on" x="23" y="28" width="8" height="8"/><rect class="bit" x="34" y="28" width="8" height="8"/><rect class="bit" x="45" y="28" width="8" height="8"/><rect class="bit on" x="56" y="28" width="8" height="8"/><rect class="bit on" x="67" y="28" width="8" height="8"/></g>
+              <g style="--r:3"><rect class="bit" x="12" y="39" width="8" height="8"/><rect class="bit" x="23" y="39" width="8" height="8"/><rect class="bit on" x="34" y="39" width="8" height="8"/><rect class="bit on" x="45" y="39" width="8" height="8"/><rect class="bit" x="56" y="39" width="8" height="8"/><rect class="bit on" x="67" y="39" width="8" height="8"/></g>
+              <g style="--r:4"><rect class="bit on" x="12" y="50" width="8" height="8"/><rect class="bit" x="23" y="50" width="8" height="8"/><rect class="bit" x="34" y="50" width="8" height="8"/><rect class="bit on" x="45" y="50" width="8" height="8"/><rect class="bit on" x="56" y="50" width="8" height="8"/><rect class="bit" x="67" y="50" width="8" height="8"/></g>
+              <g style="--r:5"><rect class="bit" x="12" y="61" width="8" height="8"/><rect class="bit on" x="23" y="61" width="8" height="8"/><rect class="bit on" x="34" y="61" width="8" height="8"/><rect class="bit" x="45" y="61" width="8" height="8"/><rect class="bit" x="56" y="61" width="8" height="8"/><rect class="bit on" x="67" y="61" width="8" height="8"/></g>
+              <g style="--r:6"><rect class="bit on" x="12" y="72" width="8" height="8"/><rect class="bit on" x="23" y="72" width="8" height="8"/><rect class="bit" x="34" y="72" width="8" height="8"/><rect class="bit on" x="45" y="72" width="8" height="8"/><rect class="bit" x="56" y="72" width="8" height="8"/><rect class="bit" x="67" y="72" width="8" height="8"/></g>
+              <g style="--r:7"><rect class="bit" x="12" y="83" width="8" height="8"/><rect class="bit on" x="23" y="83" width="8" height="8"/><rect class="bit" x="34" y="83" width="8" height="8"/><rect class="bit on" x="45" y="83" width="8" height="8"/><rect class="bit on" x="56" y="83" width="8" height="8"/><rect class="bit on" x="67" y="83" width="8" height="8"/></g>
+              <rect class="scan" x="6" y="3" width="76" height="2"/>
+              <path class="s" d="M84 50 H98 M93 45 L98 50 L93 55"/>
+              <path class="base" d="M104 92 H198"/>
+              <rect class="bar" x="106" y="86" width="7" height="6"/><rect class="bar" x="115" y="78" width="7" height="14"/><rect class="bar" x="124" y="66" width="7" height="26"/><rect class="bar" x="133" y="50" width="7" height="42"/><rect class="bar" x="142" y="34" width="7" height="58"/><rect class="bar" x="151" y="26" width="7" height="66"/><rect class="bar" x="160" y="38" width="7" height="54"/><rect class="bar" x="169" y="56" width="7" height="36"/><rect class="bar" x="178" y="72" width="7" height="20"/><rect class="bar" x="187" y="83" width="7" height="9"/>
+            </svg>
+            <div><h4>PUF characterization</h4><p>Read all 2,000 MEME chips × 48 taps. Publish the data and the tools.</p></div>
+            <div class="out"><small>Delivers</small>Open dataset</div>
+          </div>
+        </div>
+
+        <div class="tier" style="--i:1;--c:var(--B)">
+          <span class="chip lg B">B</span>
+          <div class="tcard">
+            <svg class="ico rig" viewBox="0 0 200 100" aria-hidden="true">
+              <g class="probe">
+                <rect class="s" x="14" y="6" width="102" height="12"/>
+                <path class="s" d="M38 18 L44 62 M92 18 L86 62"/>
+              </g>
+              <rect class="s" x="16" y="62" width="98" height="28"/>
+              <rect class="pad" x="39" y="62" width="10" height="5"/><rect class="pad" x="81" y="62" width="10" height="5"/>
+              <circle class="zap" cx="44" cy="62" r="3"/><circle class="zap" cx="86" cy="62" r="3"/>
+              <path class="dim" d="M116 12 H123 V26 H130"/>
+              <rect class="s" x="130" y="6" width="64" height="62"/>
+              <path class="dim" d="M137 60 H188 M137 60 V13"/>
+              <path class="iv" d="M137 60 H163 C173 60 178 50 184 16"/>
+              <text class="pass" x="162" y="90" text-anchor="middle">PASS</text>
+            </svg>
+            <div><h4>Standard test rig</h4><p>Diode bond check for every wafer.space chip. The PUF read is an add-on.</p></div>
+            <div class="out"><small>Delivers</small>wafer.space tester</div>
+          </div>
+        </div>
+
+        <div class="tier" style="--i:2;--c:var(--C)">
+          <span class="chip lg C">C</span>
+          <div class="tcard">
+            <svg class="ico reel" viewBox="0 0 200 100" aria-hidden="true">
+              <defs>
+                <clipPath id="ask-tape-in"><rect x="58" y="46" width="42" height="22"/></clipPath>
+                <clipPath id="ask-tape-out"><rect x="100" y="46" width="52" height="22"/></clipPath>
+              </defs>
+              <circle class="s" cx="30" cy="57" r="24"/>
+              <rect class="die-o" x="21" y="48" width="7" height="7"/><rect class="die-o" x="32" y="48" width="7" height="7"/>
+              <rect class="die-o" x="21" y="59" width="7" height="7"/><rect class="die-o" x="32" y="59" width="7" height="7"/>
+              <g class="key">
+                <circle class="s" cx="88" cy="16" r="6"/>
+                <path class="s" d="M94 16 H112 M106 16 V22 M110 16 V21"/>
+              </g>
+              <path class="dim dash" d="M100 26 V44"/>
+              <path class="s" d="M58 46 H152 M58 68 H152"/>
+              <g clip-path="url(#ask-tape-in)"><g class="pockets">
+                <rect class="pocket" x="34" y="51" width="12" height="12"/><rect class="die-o" x="37" y="54" width="6" height="6"/>
+                <rect class="pocket" x="50" y="51" width="12" height="12"/><rect class="die-o" x="53" y="54" width="6" height="6"/>
+                <rect class="pocket" x="66" y="51" width="12" height="12"/><rect class="die-o" x="69" y="54" width="6" height="6"/>
+                <rect class="pocket" x="82" y="51" width="12" height="12"/><rect class="die-o" x="85" y="54" width="6" height="6"/>
+                <rect class="pocket" x="98" y="51" width="12" height="12"/><rect class="die-o" x="101" y="54" width="6" height="6"/>
+              </g></g>
+              <g clip-path="url(#ask-tape-out)"><g class="pockets">
+                <rect class="pocket" x="82" y="51" width="12" height="12"/><rect class="die-f" x="85" y="54" width="6" height="6"/>
+                <rect class="pocket" x="98" y="51" width="12" height="12"/><rect class="die-f" x="101" y="54" width="6" height="6"/>
+                <rect class="pocket" x="114" y="51" width="12" height="12"/><rect class="die-f" x="117" y="54" width="6" height="6"/>
+                <rect class="pocket" x="130" y="51" width="12" height="12"/><rect class="die-f" x="133" y="54" width="6" height="6"/>
+                <rect class="pocket" x="146" y="51" width="12" height="12"/><rect class="die-f" x="149" y="54" width="6" height="6"/>
+              </g></g>
+              <circle class="s" cx="174" cy="57" r="22"/>
+              <path class="s spin" d="M174 41 V73 M158 57 H190"/>
+              <circle class="s hub" cx="174" cy="57" r="5"/>
+            </svg>
+            <div><h4>bunnie's Baochip flow</h4><p>Wafer → test + firmware/keys → tape &amp; reel. He runs it himself.</p></div>
+            <div class="out"><small>Delivers</small>bunnie's own line</div>
+          </div>
+        </div>
+
+        <div class="tier" style="--i:3;--c:var(--D)">
+          <span class="chip lg D">D</span>
+          <div class="tcard">
+            <svg class="ico pkg" viewBox="0 0 200 100" aria-hidden="true">
+              <rect class="s" x="40" y="6" width="120" height="72"/>
+              <rect class="fing" x="62" y="12" width="10" height="6"/><rect class="fing" x="82" y="12" width="10" height="6"/>
+              <rect class="fing" x="108" y="12" width="10" height="6"/><rect class="fing" x="128" y="12" width="10" height="6"/>
+              <rect class="fing" x="62" y="66" width="10" height="6"/><rect class="fing" x="82" y="66" width="10" height="6"/>
+              <rect class="fing" x="108" y="66" width="10" height="6"/><rect class="fing" x="128" y="66" width="10" height="6"/>
+              <rect class="die" x="78" y="30" width="44" height="24"/>
+              <path class="wire" d="M84 32 Q78 20 67 18 M95 32 Q92 22 87 18 M105 32 Q108 22 113 18 M116 32 Q122 20 133 18"/>
+              <path class="wire" d="M84 52 Q78 64 67 66 M95 52 Q92 62 87 66 M105 52 Q108 62 113 66 M116 52 Q122 64 133 66"/>
+              <rect class="land" style="--k:0" x="44" y="86" width="10" height="6"/><rect class="land" style="--k:1" x="59" y="86" width="10" height="6"/>
+              <rect class="land" style="--k:2" x="74" y="86" width="10" height="6"/><rect class="land" style="--k:3" x="89" y="86" width="10" height="6"/>
+              <rect class="land" style="--k:4" x="104" y="86" width="10" height="6"/><rect class="land" style="--k:5" x="119" y="86" width="10" height="6"/>
+              <rect class="land" style="--k:6" x="134" y="86" width="10" height="6"/><rect class="land" style="--k:7" x="149" y="86" width="10" height="6"/>
+            </svg>
+            <div><h4>SMT packaging</h4><p>CoB productized (done, with Tim). LGA next.</p></div>
+            <div class="out"><small>Delivers</small>SMT-ready parts</div>
+          </div>
+        </div>
+
+        <div class="tier" style="--i:4;--c:var(--E)">
+          <span class="chip lg E">E</span>
+          <div class="tcard">
+            <svg class="ico sky" viewBox="0 0 200 100" role="img" aria-label="Singapore: HDB blocks with lit windows, the crescent and five stars, Marina Bay Sands">
+              <!-- HDB blocks: where people live (and where bunnie already runs a line) -->
+              <rect class="s" x="8" y="30" width="32" height="62"/>
+              <path class="dim" d="M8 40 H40 M8 50 H40 M8 60 H40 M8 70 H40 M8 80 H40 M24 30 V92"/>
+              <rect class="f" x="27" y="62" width="10" height="6"/>
+              <rect class="win" style="--w:0s" x="11" y="42" width="10" height="6"/>
+              <rect class="win" style="--w:1.4s" x="27" y="32" width="10" height="6"/>
+              <rect class="win" style="--w:2.7s" x="11" y="72" width="10" height="6"/>
+              <rect class="s" x="46" y="48" width="24" height="44"/>
+              <path class="dim" d="M46 58 H70 M46 68 H70 M46 78 H70"/>
+              <rect class="win" style="--w:3.4s" x="53" y="70" width="10" height="6"/>
+              <!-- crescent + five stars (the flag) -->
+              <path class="f" d="M60 13 A11 11 0 1 0 60 31 A9.5 9.5 0 0 1 60 13 Z"/>
+              <circle class="f" cx="66" cy="17" r="1.6"/><circle class="f" cx="70.8" cy="20.5" r="1.6"/><circle class="f" cx="68.9" cy="26" r="1.6"/><circle class="f" cx="63.1" cy="26" r="1.6"/><circle class="f" cx="61.2" cy="20.5" r="1.6"/>
+              <!-- Marina Bay Sands -->
+              <path class="s" d="M104 92 L107 38 H117 L119 92 M124 92 L126 38 H136 L138 92 M144 92 L145 38 H155 L159 92"/>
+              <path class="s" d="M98 38 H172 L176 32 H100 Z"/>
+              <path class="dim" d="M2 92 H200"/>
+            </svg>
+            <div><h4>Singapore line</h4><p>Dicing partner + pick + test + tape &amp; reel. Low-volume, high-mix, made here.</p></div>
+            <div class="out"><small>Delivers</small>A local capability</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <aside class="notes">
+      <p>Before I get into any of the details, here's what I'm asking for, so you know where this is heading.</p>
+      <p>It isn't a single number. It's a ladder of achievable goals. Each tier delivers something on its own, and each one sets up the next. You pick how far down we go, and I build to suit.</p>
+      <p>I don't know your risk tolerance, but I have large dreams. So it starts with a small, safe first step and runs all the way to a whole line in Singapore.</p>
+      <p>A: characterize the PUFs on my MEME chip and publish the dataset. B: a standard test rig, a bond check for every wafer.space chip, with the PUF read as an add-on. C: bunnie's Baochip flow, which he runs himself. D: SMT-ready packaging, CoB now and LGA next. E: a Singapore line that puts it all together.</p>
+      <p>If some of those words are new, don't worry. I'll walk through each one. You'll see these letters, in these colors, in the corner of the slides that follow, so you know which tier each piece belongs to.</p>
+      <p>And the point of all of it: the grant lifts the whole open-silicon ecosystem, not one project.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 03 DIVIDER I -->
+  <section class="slide divider plate" data-sect="meme" data-title="Part I — I made a chip">
+    <div class="plate-bg" style="background-image:url('assets/img/meme.png')"></div>
+    <div></div>
+    <div class="stack tight rise">
+      <div class="numeral">SECTION 01</div>
+      <h1>I made a chip.</h1>
+      <p class="lead dim">A 2,000-chip PUF test vehicle on GF180.</p>
+    </div>
+    <div class="rise" style="position:absolute;right:110px;bottom:150px;width:900px">
+      <figure class="shot"><img src="assets/img/meme-die.jpg" alt="Photo of the MEME die: doge artwork drawn in metal across the chip"></figure>
+      <p class="fig-cap">MEME die, as fabricated</p>
+    </div>
+    <aside class="notes"><p>So, part one. I made a chip.</p></aside>
+  </section>
+
+  <!-- ================================================= 04b I MADE TWO -->
+  <section class="slide divider plate two-chips" data-sect="meme" data-title="Well, actually, I made two">
+    <div class="plate-bg" style="background-image:url('assets/img/meme.png')"></div>
+    <div></div>
+    <div class="stack tight rise" style="max-width:740px">
+      <div class="numeral">WELL, ACTUALLY</div>
+      <h1>I made two.</h1>
+      <p class="lead dim">I'm a toolmaker at heart. Both chips are artifacts used to prove tools.</p>
+    </div>
+    <div class="es">
+      <p class="fig-cap">EuroSynth die · a synth voice in silicon</p>
+      <figure class="shot"><img src="assets/img/eurosynth-die.jpg" alt="Photo of the EuroSynth die: a synthesizer chip on GF180 with EuroSynth, music-note and evezor logos in metal"></figure>
+    </div>
+    <div style="position:absolute;right:110px;bottom:150px;width:900px">
+      <figure class="shot"><img src="assets/img/meme-die.jpg" alt="Photo of the MEME die: doge artwork drawn in metal across the chip"></figure>
+      <p class="fig-cap">MEME die, as fabricated</p>
+    </div>
+    <aside class="notes">
+      <p>Well... actually, I made two.</p>
+      <p>This one is EuroSynth: a synthesizer voice, all digital, also on GF180. Same slot size as MEME. You can play it in your browser.</p>
+      <p>But the truth is, I'm a toolmaker at heart. I didn't set out to make chips. These two are artifacts of building other tools.</p>
+      <p>EuroSynth was made to test a getting-started guide I wrote. And MEME exists because I wanted to put art on the EuroSynth die.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 04 MEET MEME -->
+  <section class="slide" data-sect="meme" data-title="MEME Chip">
+    <div class="eyebrow rise"><span class="tag">MEME Chip</span><span class="rule"></span><span>GF180MCU · wafer.space · 3.9 × 2.5 mm</span></div>
+    <div class="body cols c2-wide">
+      <div class="stack tight rise">
+        <figure class="shot die"><img src="assets/img/meme_puf_highlight.png" alt="MEME die render with the six PUF medallions circled"></figure>
+        <p class="fig-cap">The MEME die, 3.9 × 2.5 mm. Doge art on all five metal layers. Circled: the six PUF medallions.</p>
+      </div>
+      <div class="stack">
+        <h2 class="rise">MEME <em>Chip</em></h2>
+        <ul class="plain rise">
+          <li><strong>2,000 chips</strong> in hand</li>
+          <li><strong>48 PUF taps</strong>, hidden in <strong>6</strong> dogecoin medallions, <strong>8</strong> per coin</li>
+          <li>Two coins on the west side, four on the east</li>
+          <li>Each tap routes out to its <strong>own pad</strong>, so every one can be probed</li>
+        </ul>
+      </div>
+    </div>
+    <aside class="notes">
+      <p>This is MEME. It's on wafer.space's GF180 run, about 3.9 by 2.5 millimeters, with doge art on every metal layer. I have 2,000 of them.</p>
+      <p>The interesting part is hidden in the art. Look at the six dogecoin medallions I've circled: under each one is a cluster of eight resistor dividers. That's 48 PUF taps per die, and each one is routed out to its own pad so I can probe it directly.</p>
+      <p>I was telling bunnie about this chip: how stupid it is, and what some of the pieces were actually built for. He just laughed and said, "This is usually how these things start."</p>
+      <p>Let's zoom in on the lower one on the left.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 04b PUF UP CLOSE -->
+  <section class="slide" data-sect="meme" data-title="Hidden in the medallions">
+    <div class="eyebrow rise"><span class="tag">PUF</span><span class="rule"></span><span>one medallion, under the microscope</span></div>
+    <div class="body cols c2 top">
+      <div class="stack tight rise">
+        <figure class="shot" style="height:560px"><img src="assets/img/puf-microscope.jpg" alt="Microscope photo of one dogecoin medallion on a real MEME die, with the PUF cluster visible as a lavender block under the coin"></figure>
+        <p class="fig-cap">Real die, under the microscope · PUF cluster is the lavender block under the coin</p>
+      </div>
+      <div class="stack">
+        <h2 class="rise">Eight dividers under <em>every coin.</em></h2>
+        <div class="rise">
+          <img class="fig" src="assets/img/puf-cluster.svg" alt="The PUF cluster: 8 two-resistor dividers on shared HI and LO rails, 80 by 45 micrometers">
+        </div>
+        <ul class="plain rise" style="font-size:26px">
+          <li>The whole cluster is <strong>80 × 45 µm</strong>, about the width of a human hair.</li>
+          <li>The art is carved away around it, so it hides in plain sight.</li>
+        </ul>
+      </div>
+    </div>
+    <aside class="notes">
+      <p>This is one medallion on a real die, photographed under my microscope. The yellow ring and the coin in the middle are the doge art in metal.</p>
+      <p>The lavender block under the coin is the PUF cluster: eight dividers, each a pair of poly resistors, sitting on a shared high and low rail. On the right is the same cluster drawn from the layout. The whole thing is 80 by 45 microns, about the width of a human hair. The eight tap lines and the two rails run off to the side, out to the pads.</p>
+      <p>The art is carved away around it, so on the finished die it just looks like part of the coin.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 05 PUF -->
+  <section class="slide" data-sect="meme" data-title="How the PUF works">
+    <div class="eyebrow rise"><span class="tag">PUF</span><span class="rule"></span><span>48 passive dividers · read unpowered</span></div>
+    <div class="body cols c2-narrow top">
+      <div class="stack">
+        <h2 class="rise">A fingerprint made of <em>resistors.</em></h2>
+        <div class="rise">
+          <svg class="fig schem" viewBox="0 0 520 300" role="img" aria-label="One resistor divider between Vhi and Vlo with a tap in the middle">
+            <text class="strong" x="10" y="38">V<tspan font-size="13">HI</tspan> = 1 V</text>
+            <path class="wire" d="M150 30 H230 V60"/>
+            <rect class="res" x="210" y="60" width="40" height="70" rx="4"/>
+            <path class="wire" d="M230 130 V170"/>
+            <circle class="tapdot" cx="230" cy="150" r="8"/>
+            <path class="wire" d="M230 150 H360" style="stroke:var(--h-meme)"/>
+            <text class="hue" x="372" y="157">TAP k</text>
+            <rect class="res" x="210" y="170" width="40" height="70" rx="4"/>
+            <path class="wire" d="M230 240 V270 H150"/>
+            <text class="strong" x="10" y="276">V<tspan font-size="13">LO</tspan> = 0 V</text>
+            <text class="small" x="268" y="100">~3.5 kΩ</text>
+            <text class="small" x="268" y="210">~3.5 kΩ</text>
+          </svg>
+        </div>
+        <ul class="plain rise" style="font-size:26px">
+      
+          <li>Ratio <code>r<sub>k</sub></code> cancels process spread and temperature.</li>
+          <li>What's left: tiny per-die <strong>random mismatch.</strong></li>
+        </ul>
+      </div>
+      <div class="stack" id="puf">
+        <div class="rise">
+          <svg class="fig puf-bars" viewBox="0 0 1000 380" role="img" aria-label="48 tap deviations, grouped in 6 clusters of 8"></svg>
+        </div>
+        <div class="fp rise" aria-live="polite"></div>
+        <div class="row rise">
+          <button class="btn" type="button">Read another die ↻</button>
+          <span class="pill hot">~240 bits / die</span>
+          <span class="pill">simulated: design estimate, no silicon read yet</span>
+        </div>
+      </div>
+    </div>
+    <aside class="notes">
+      <p>Each tap is the middle of a two-resistor divider. The chip is completely passive for this: no power, you just force one volt across the rails and read 48 voltages.</p>
+      <p>Taking the ratio cancels process spread and temperature drift. What's left is the random mismatch between resistors, and that's the fingerprint.</p>
+      <p>The bars on the right are simulated. Each "read" is a different die. The design estimate is about 4 to 5 bits per tap, around 240 bits per die. That's an estimate: no silicon has been measured yet.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 07 VIABLE? -->
+  <section class="slide" data-sect="meme" data-title="Are these PUFs truly viable?" data-tiers="A">
+    <div class="eyebrow rise"><span class="tag">Viability</span><span class="rule"></span><span>The uncertainty</span></div>
+    <div class="body cols c2">
+      <div class="stack">
+        <h2 class="rise">Are these PUFs <em>truly viable?</em></h2>
+        <blockquote class="rise">This kind of PUF could get less reliable as processes improve.<span class="src">Tim Ansell, wafer.space (paraphrased)</span></blockquote>
+        <p class="dim rise">Better processes mean tighter matching, and tighter matching means less mismatch to fingerprint. Nobody has the data to say how much is left.</p>
+      </div>
+      <div class="stack tight rise">
+        <svg class="fig dist" viewBox="0 0 760 420" role="img" aria-label="Distribution of resistor mismatch; a tighter process narrows it">
+          <line x1="20" y1="360" x2="740" y2="360" style="stroke:var(--line-2);stroke-width:2"/>
+          <path class="wide" d="M20 360 C 200 360, 270 80, 380 80 C 490 80, 560 360, 740 360"/>
+          <path class="narrow" d="M20 360 C 200 360, 270 80, 380 80 C 490 80, 560 360, 740 360"/>
+          <text class="q" x="560" y="140">?</text>
+          <text class="small" x="20" y="396">– MISMATCH</text>
+          <text class="small" x="740" y="396" text-anchor="end">+ MISMATCH</text>
+          <text class="good" x="40" y="60">GF180 TODAY</text>
+          <text class="bad" x="40" y="90">TIGHTER PROCESS</text>
+        </svg>
+        <p class="fig-cap">Less spread means fewer bits per tap. How much spread is there today? Unknown.</p>
+      </div>
+    </div>
+    <aside class="notes">
+      <p>Here's the uncertainty. In an earlier conversation with you and Tim Ansell, Tim pointed out that this type of PUF might become unreliable as manufacturing improves. Tighter processes mean better-matched resistors, so less randomness to work with.</p>
+      <p>He may be right. I don't know, and neither does anyone else, because the data doesn't exist yet.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 06 UNIQUENESS -->
+  <section class="slide" data-sect="meme" data-title="A physical NFT">
+    <div class="eyebrow rise"><span class="tag">Purpose</span><span class="rule"></span><span>Uniqueness, not secrets</span></div>
+    <div class="body stack">
+      <h2 class="rise">Every MEME chip is an <em>NFT</em> you can hold.</h2>
+      <div class="cols c3 stretch versus tight-cards rise">
+        <div class="card no">
+          <span class="k">Not the goal</span>
+          <h4>Key protection</h4>
+          <p class="dim">Needs side-channel resistance and fuzzy extractors. That's Cloneless's job.</p>
+        </div>
+        <div class="card yes">
+          <span class="k">Goal 1 · non-fungible</span>
+          <h4>Uniqueness</h4>
+          <p>No two dies share a fingerprint. Every chip is a <strong>one-of-one.</strong></p>
+        </div>
+        <div class="card yes">
+          <span class="k">Goal 2 · unforgeable</span>
+          <h4>Anti-forgery</h4>
+          <p>The fingerprint can't be cloned. The die <strong>proves it's genuine.</strong></p>
+        </div>
+      </div>
+      <div class="why rise">
+        <span class="k">Why this form is valuable</span>
+        <div class="cols c4 top">
+          <div><h5>The token is the object</h5><p>A normal NFT points at a file anyone can copy. Here the uniqueness is in the silicon.</p></div>
+          <div><h5>No secret to steal</h5><p>The fingerprint can be public. It proves identity by being impossible to reproduce.</p></div>
+          <div><h5>Checked with a meter</h5><p>Unpowered: 1 V in, 48 readings out. No firmware or network to trust.</p></div>
+          <div><h5>Nearly free</h5><p>Standard GF180 poly resistors under the art: about 0.2% of the die.</p></div>
+        </div>
+      </div>
+    </div>
+    <aside class="notes">
+      <p>Here's the simplest way to say what MEME is: every chip is an NFT you can hold. A non-fungible token, but the token is the physical die.</p>
+      <p>To be clear about scope: I'm not trying to store keys with this. That's a much harder problem, and it's what Cloneless works on. The goals are uniqueness, meaning no two dies alike, and anti-forgery, meaning you can't fake one.</p>
+      <p>Why is this form valuable? A normal NFT is a record that points at a file, and anyone can copy the file. Here the uniqueness is the object itself, set by random variation when the wafer was made. There's no secret inside to steal: the fingerprint can be published, because what makes it valuable is that nobody can build a die that matches it. Checking it takes a meter, with the chip unpowered, so you don't have to trust any firmware. And it's nearly free: standard resistors hidden under the art, about two tenths of a percent of the die.</p>
+      <p>That identity follows the chip through every step of the supply chain, which comes back later in the talk.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 08 CHARACTERIZE (A → B) -->
+  <section class="slide" data-sect="meme" data-title="Characterize everything" data-tiers="A B">
+    <div class="eyebrow rise"><span class="tag">Characterization</span><span class="rule"></span></div>
+    <div class="body cols c2-narrow">
+      <div class="stack" style="gap:18px">
+        <h2 class="rise">So we measure <em>every one.</em></h2>
+        <div class="row rise" style="gap:22px;align-items:baseline">
+          <span class="num lg" data-count="2000">2,000</span><span class="vs">chips ×</span>
+          <span class="num lg">48</span><span class="vs">taps</span>
+        </div>
+        <div class="rise"><span class="num xl hue" data-count="96000">96,000</span><span class="vs" style="margin-left:18px">measurements</span></div>
+        <p class="lead rise">Published as an <strong>open dataset.</strong> Anyone can test whether it's truly random.</p>
+        <div class="row rise">
+          <span class="pill">Hamming distance</span><span class="pill">bit bias</span>
+          <span class="pill">spatial correlation</span><span class="pill">wafer position</span><span class="pill">NIST-style tests</span>
+        </div>
+        <p class="rise" style="font-size:26px">Plus <strong>noise and entropy data</strong> for fuzzy extractors.</p>
+        <p class="dim rise">Nobody reads 2,000 chips by hand. The rig that reads them is tier B: the <strong>standard test rig.</strong></p>
+      </div>
+      <div class="stack tight rise">
+        <canvas class="fig dots" id="dots" width="2000" height="1600" role="img" aria-label="2,000 tiles, one per chip. A probe line sweeps down and each tile reveals a different fingerprint"></canvas>
+        <p class="fig-cap">One tile per chip. No two read alike.</p>
+      </div>
+    </div>
+    <aside class="notes">
+      <p>So the answer is data. I have 2,000 chips with 48 taps each: 96,000 measurements.</p>
+      <p>We read every one and publish the whole dataset openly, so anyone can run their own analysis: Hamming distance, bias, spatial correlation, randomness suites.</p>
+      <p>Characterizing MEME at scale also produces the noise and entropy data a fuzzy extractor needs. Key protection isn't my goal, but this dataset gives the people working on it, like Cloneless, real numbers to design against.</p>
+      <p>GF180 is a mature node, so this becomes the baseline for tracking whether these PUFs hold up. That's tier A on the ladder.</p>
+      <p>But nobody reads 2,000 chips by hand. The moment we build a rig to do it, we've crossed into B: that same rig becomes the standard tester for every wafer.space chip, with the PUF read as an add-on.</p>
+      <p>And measuring these isn't only about the PUF. There are generic testing procedures every chip needs, whatever it is. I'll get to those in the coming slides.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 10 DIVIDER II -->
+  <section class="slide divider" data-sect="prod" data-title="Part II — The last mile">
+    <div class="art rise">
+      <svg class="fig title-track" viewBox="0 0 1500 120">
+        <line class="road" x1="30" y1="60" x2="870" y2="60" style="stroke:var(--raw-blue)"/>
+        <line class="road last" x1="870" y1="60" x2="1470" y2="60"/>
+        <circle class="stop" cx="30" cy="60" r="14"/><circle class="stop" cx="170" cy="60" r="14"/><circle class="stop" cx="310" cy="60" r="14"/>
+        <circle class="stop" cx="450" cy="60" r="14"/><circle class="stop" cx="590" cy="60" r="14"/><circle class="stop" cx="730" cy="60" r="14"/>
+        <circle class="stop last" cx="870" cy="60" r="20"/><circle class="stop last" cx="1070" cy="60" r="20"/>
+        <circle class="stop last" cx="1270" cy="60" r="20"/><circle class="stop last" cx="1470" cy="60" r="20"/>
+        <circle class="token" r="9"><animateMotion dur="5s" repeatCount="indefinite" path="M30 60 H1470"/></circle>
+      </svg>
+    </div>
+    <div class="stack tight rise">
+      <div class="numeral">SECTION 03</div>
+      <h1>The last mile.</h1>
+      <p class="lead dim">The lifecycle every chip goes through, and where the industry leaves us hanging.</p>
+    </div>
+    <aside class="notes"><p>Part two: the lifecycle every chip goes through, and where the current industry leaves us hanging.</p></aside>
+  </section>
+
+  <!-- ================================================= 09 HINGE -->
+  <section class="slide" data-sect="needs" data-title="My needs are open silicon's needs">
+    <div class="eyebrow rise"><span class="tag">The bigger picture</span><span class="rule"></span></div>
+    <div class="body stack">
+      <h2 class="rise" style="max-width:24ch">The life of every chip is to <em>leave the wafer.</em></h2>
+      <div class="rise">
+        <svg class="fig funnel" viewBox="0 0 1700 420" role="img" aria-label="MEME, wafer.space designs and the Baochip all need the same line">
+          <rect class="src" x="0" y="20"  width="420" height="96" rx="8" style="stroke:var(--h-meme)"/>
+          <rect class="src" x="0" y="162" width="420" height="96" rx="8" style="stroke:var(--raw-blue)"/>
+          <rect class="src" x="0" y="304" width="420" height="96" rx="8" style="stroke:var(--raw-orange)"/>
+          <text class="strong" x="28" y="60">MEME</text><text x="28" y="98">2,000 chips · PUF read</text>
+          <text class="strong" x="28" y="202">wafer.space · Tim</text><text x="28" y="240">56 designs per run</text>
+          <text class="strong" x="28" y="344">Baochip · bunnie</text><text x="28" y="382">WCSP · firmware + keys</text>
+          <path class="flow" d="M420 68 C 620 68, 640 210, 820 210" style="stroke:var(--h-meme)"/>
+          <path class="flow" d="M420 210 H820" style="stroke:var(--raw-blue)"/>
+          <path class="flow" d="M420 352 C 620 352, 640 210, 820 210" style="stroke:var(--raw-orange)"/>
+          <rect class="line-box" x="820" y="120" width="560" height="180" rx="10"/>
+          <text class="strong" x="1100" y="196" text-anchor="middle" style="font-size:30px">THE LAST MILE</text>
+          <text x="1100" y="248" text-anchor="middle">sort · package · test · ship</text>
+          <path class="flow" d="M1380 210 H1560" style="stroke:var(--h-needs)"/>
+          <text class="strong" x="1580" y="204">BOARDS</text><text class="small" x="1580" y="236">SMT-READY</text>
+        </svg>
+      </div>
+      <p class="lead rise" style="max-width:56ch">Sorted, packaged, tested. <strong>My needs are the same as every open-silicon chip's.</strong></p>
+    </div>
+    <aside class="notes">
+      <p>Here's the turn. To read 2,000 chips, I have to get every one off the wafer, sorted, packaged and tested.</p>
+      <p>That's exactly what every other open-silicon chip needs too: Tim's wafer.space customers, and bunnie's Baochip. Solving it for MEME solves it for everyone.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 12 GAPS -->
+  <section class="slide" data-sect="prod" data-title="Where the industry leaves us hanging">
+    <div class="eyebrow rise"><span class="tag">The gaps</span><span class="rule"></span><span>Design ✓ · Fab ✓ · Dicing ✓ · Everything after ✕</span></div>
+    <div class="body stack">
+      <h2 class="rise">Where the industry <em class="bad">leaves us hanging.</em></h2>
+      <div class="cols c3 stretch rise">
+        <div class="card" style="border-top:4px solid var(--bad)">
+          <span class="k">Sort</span>
+          <div><span class="num lg" data-count="56">56</span><span class="vs" style="margin-left:12px">designs / wafer</span></div>
+          <div class="gapbar-wrap">
+            <div class="gapbar-row"><span>US</span><div class="gapbar us" style="width:100%"></div></div>
+            <div class="gapbar-row"><span>INDUSTRY</span><div class="gapbar" style="width:18%"></div></div>
+          </div>
+          <p class="dim">Industry handles 8–10 unique sorts per wafer max.</p>
+        </div>
+        <div class="card" style="border-top:4px solid var(--bad)">
+          <span class="k">Package</span>
+          <div><span class="num lg" data-count="1000">1,000</span><span class="vs" style="margin-left:12px">/ order</span></div>
+          <div class="gapbar-wrap">
+            <div class="gapbar-row"><span>US</span><div class="gapbar us" style="width:4px"></div></div>
+            <div class="gapbar-row"><span>MINIMUM</span><div class="gapbar" style="width:100%"></div></div>
+          </div>
+          <p class="dim">Packaging houses want <strong>1M–3M</strong>. Drawn to scale. No package means no test either.</p>
+        </div>
+        <div class="card" style="border-top:4px solid var(--bad)">
+          <span class="k">Package + provision</span>
+          <div class="row" style="gap:28px">
+            <svg class="donut" viewBox="0 0 220 220" width="170" height="170" aria-hidden="true">
+              <circle class="track" cx="110" cy="110" r="90" fill="none" stroke-width="28"/>
+              <circle class="arc" cx="110" cy="110" r="90" fill="none" stroke-width="28"
+                stroke-dasharray="565.5" stroke-dashoffset="565.5" data-pct="30" transform="rotate(-90 110 110)"/>
+            </svg>
+            <span class="num lg">>30<span class="u">%</span></span>
+          </div>
+          <p class="dim">The share of bunnie's COG that go to assembly and test providers.</p>
+        </div>
+      </div>
+    </div>
+    <aside class="notes">
+      <p>Design is solved with open PDKs. Fab is solved with wafer.space. Dicing exists locally. After that, the industry leaves us hanging.</p>
+      <p>Sort: the industry handles maybe 8 to 10 unique dies per wafer. Our current run has 56.</p>
+      <p>Packaging: we ship 1,000 chips per order. Packaging houses want a million minimum, some three million with the AI surge. That bar is drawn to scale. And since testing likely happens at the packaging house, no package means no test.</p>
+      <p>And bunnie has told me that packaging and provisioning take about 30% of his chip cost. That's a huge share.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 11 LIFECYCLE -->
+  <section class="slide" data-sect="prod" data-title="The lifecycle every chip goes through">
+    <div class="eyebrow rise"><span class="tag">Production overview</span><span class="rule"></span><span>10 steps · 2 routes</span></div>
+    <div class="body stack">
+      <h2 class="rise">Every chip goes through <em>these steps.</em></h2>
+      <div class="rise"><svg class="fig life" id="life" viewBox="0 0 1700 560" role="img" aria-label="Ten production steps for wafer.space chips and for bunnie's Baochip"></svg></div>
+      <div class="legend rise">
+        <span><i style="border-color:#5b6b67"></i>External</span>
+        <span><i style="border-color:var(--raw-blue)"></i>wafer.space</span>
+        <span><i style="border-color:var(--bad);background:color-mix(in srgb,var(--bad) 18%,transparent)"></i>Expensive vendor</span>
+        <span><i style="border-color:var(--raw-mono-1);background:color-mix(in srgb,var(--raw-mono-1) 18%,transparent)"></i>Andrew, in-house</span>
+        <span><i style="border-color:var(--raw-orange);background:color-mix(in srgb,var(--raw-orange) 18%,transparent)"></i>bunnie, grant-built tools</span>
+        <span><i style="border-color:var(--line-2);border-style:dashed"></i>Skipped / TBD</span>
+        <span><i style="width:14px;height:14px;border:3px solid var(--bad);transform:rotate(45deg);margin:0 3px"></i>Handoff · supply-chain attack surface</span>
+      </div>
+    </div>
+    <aside class="notes">
+      <p>Here's the whole journey. An architect makes the GDS, wafer.space stitches all the designs together, and the foundry, GlobalFoundries in Singapore, makes the wafers.</p>
+      <p>bunnie's route adds an expensive wafer test and WCSP bumping. Then everyone dices, sorts, packages, tests and packs for shipping.</p>
+      <p>The highlighted box is the last mile: sort through ship. That's where this grant lives. On the wafer.space side I run it; on bunnie's side, he runs it himself on tools built by this grant.</p>
+      <p>The red diamonds are the handoffs, every point where the chip, or its design, passes to someone else. Each one is a place a supply-chain attack can get in: a swapped die, a tampered file, a counterfeit. Notice that once we're inside the last mile, there aren't any.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 17 DIVIDER IV -->
+  <section class="slide divider plate" data-sect="line" data-title="Part IV — How we do it today">
+    <div class="plate-bg" style="background-image:url('assets/img/sort-rig.jpg')"></div>
+    <div></div>
+    <div class="stack tight rise">
+      <div class="numeral">SECTION 05</div>
+      <h1>How it runs today.</h1>
+      <p class="lead dim">What wafer.space does now, and the troubles we hit.</p>
+    </div>
+    <aside class="notes"><p>Part four: how wafer.space is doing this today, and the trouble we run into.</p></aside>
+  </section>
+
+  <!-- ================================================= 18 SORT -->
+  <section class="slide" data-sect="line" data-title="Sort: 56 designs from one wafer" data-tiers="E">
+    <div class="eyebrow rise"><span class="tag">Step 7 · Sort</span><span class="rule"></span></div>
+    <div class="body cols c2-narrow">
+      <div class="stack">
+        <h2 class="rise">Sort: <em>56 designs</em> from one wafer.</h2>
+        <ul class="plain ok rise">
+          <li>Built it. Ran it on Run 1, including Cloneless1.</li>
+          <li>Die pick + tape &amp; reel: machines in hand</li>
+        </ul>
+        <ul class="plain x rise">
+          <li>No one else sorts this many designs per wafer</li>
+          <li>Each design leaves in its own bin: <strong>N streams</strong> to manage</li>
+        </ul>
+      </div>
+      <div class="cols c2 rise" style="gap:20px">
+        <figure class="shot h520"><img src="assets/img/sort-wafer-closeup.jpg" alt="Wafer on the sort machine"></figure>
+        <figure class="shot h520"><img src="assets/img/wafer-map-reticles.png" alt="wafer.space wafer map with many designs"></figure>
+      </div>
+    </div>
+    <aside class="notes">
+      <p>Step seven, sort. This one we've already solved: I built the machine and ran it on Run 1. That's how Cloneless1 got into tape.</p>
+      <p>The trouble is what comes out: one bin per design. With 56 designs, everything downstream has to handle 56 separate streams, and that's where outsourcing gets painful.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 19 PACKAGE -->
+  <section class="slide" data-sect="line" data-title="Package: CoB done, LGA next" data-tiers="D">
+    <div class="eyebrow rise"><span class="tag">Step 8 · Package</span><span class="rule"></span></div>
+    <div class="body cols c2-narrow">
+      <div class="stack">
+        <h2 class="rise">Package: <em>CoB done.</em> LGA next.</h2>
+        <ul class="plain ok rise">
+          <li><strong>Chip-on-board</strong> carriers, developed with Tim</li>
+          <li>Wire-bonded, onto a 70-pin mezzanine</li>
+        </ul>
+        <ul class="plain rise">
+          <li><strong>LGA</strong>: my next option, for standard SMT lines</li>
+        </ul>
+        <ul class="plain x rise">
+          <li>Packaging houses won't take 1,000-unit lots</li>
+        </ul>
+      </div>
+      <div class="rise">
+        <div class="pkg-grid">
+          <figure class="shot"><img src="assets/img/cob-package.png" alt="Chip-on-board carrier"></figure>
+          <figure class="shot"><img src="assets/img/wirebond-closeup-1.png" alt="Wirebonds, close up"></figure>
+          <figure class="shot contain"><img src="assets/img/lga-back.png" alt="Render of the LGA-100 underside: a 10 by 10 land grid on a 9.5 mm board"></figure>
+          <figure class="shot contain"><img src="assets/img/lga-carrier.png" alt="Render of a carrier board for the LGA-100, with 100 castellated edge pins"></figure>
+        </div>
+        <!-- <p class="fig-cap">Top: CoB, shipping · Bottom: LGA-100 renders, 9.5 <span class="lc">mm</span>: lands, carrier</p> -->
+      </div>
+    </div>
+    <aside class="notes">
+      <p>Step eight, packaging. Chip-on-board is done. I developed it with Tim, and it's how wafer.space chips ship today.</p>
+      <p>LGA is my next option, a package standard SMT lines can place directly. On the bottom: the 9.5-millimeter LGA-100, with its 10 by 10 land grid, and a carrier board it solders onto. The trouble, again: no packaging house will touch a 1,000-unit lot, so we do it ourselves.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 23 TESTING: one tester, and a path to bunnie's (third pass 2026-10-20) -->
+  <section class="slide" data-sect="people" data-title="One tester, and a path to bunnie's" data-tiers="A B C">
+    <div class="eyebrow rise"><span class="tag">Step 9 · Test</span><span class="rule"></span></div>
+    <div class="body cols c2-narrow">
+      <div class="stack">
+        <h2 class="rise">One tester.<br><em>A path to bunnie's.</em></h2>
+        <p class="lead rise">MEME and every wafer.space design share one rig. Swap the insert, drop it in, <strong>no solder</strong>, and every contact is checked.</p>
+        <ul class="plain sock-who rise">
+          <li><span class="chip A">A</span><span><strong>MEME</strong>: the PUF read rides along</span></li>
+          <li><span class="chip B">B</span><span><strong>wafer.space designs</strong>: every bond, before solder</span></li>
+          <li><span class="chip more">+</span><span><strong>Other shuttles</strong>, other packages: same rig</span></li>
+          <li class="draft"><span class="chip C">C</span><span><strong>bunnie's Baochip</strong>: his testbed, shaped by this one</span></li>
+        </ul>
+        <p class="dim rise">What the Baochip needs won't come from a spec sheet. It <strong>shows up as we build.</strong></p>
+      </div>
+      <div class="rise" id="socket">
+        <svg class="fig sock" viewBox="0 0 900 690" role="img" aria-label="A queue of chips from different designers and shuttles, in different packages, drops one by one into the same socket with a swapped insert; every contact lights up as it is checked, each chip runs its own tests, and it moves to the tested tray. Beside the tray, a dashed draft of bunnie's own testbed inks in as each chip passes, with one line still a question mark: what the Baochip needs next"></svg>
+        <p class="fig-cap">The goal: a low-cost way to test many designs.<br>Such any designer can write or make their own tests.</p>
+      </div>
+    </div>
+    <aside class="notes">
+      <p>Here's what testing looks like when it's built for open silicon. One tester for MEME and for every wafer.space chip: a socket with swappable inserts. A chip drops in, no soldering, spring probes touch every contact, and you find out.</p>
+      <p>The baseline test is the same for everyone. Every pad has an ESD diode, so we push a little current through each contact: about 0.6 volts means it's made and correct. No current means open; the wrong voltage means a misbond or a short. It doesn't need to know anything about the design.</p>
+      <p>On top of that, each chip runs what it needs. For MEME, the PUF read, and that's where the 96,000 measurements come from. For a wafer.space design, its own functional tests. And it isn't only wafer.space: chips from other shuttles, in other packages, take the same rig.</p>
+      <p>bunnie's Baochip is a different job. Solder bumps instead of bond pads, his firmware, his customers' keys. I won't claim this exact rig is his tester. But building it is the path to his. The contact check, the probe inserts, the test software and the logging all carry over. And what the Baochip really needs beyond that, I expect to find out by building, not by guessing from a spec today.</p>
+      <p>Every shuttle carries dozens of designs, and behind every one of them is someone waiting to find out if their chip works. This is how they find out, before anything is soldered down.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 24 BUNNIE: everything so far is what he wants (2026-10-20) -->
+  <section class="slide" data-sect="people" data-title="Everything so far is what bunnie wants personally" data-tiers="C">
+    <div class="eyebrow rise"><span class="tag">bunnie · Baochip</span><span class="rule"></span></div>
+    <div class="body stack">
+      <div class="stack tight">
+        <h2 class="rise">Everything so far <em>is what bunnie wants personally.</em></h2>
+        <p class="lead rise" style="max-width:none">Wafer to tape &amp; reel, on his own line.</p>
+      </div>
+      <div class="stack rise" style="--c:var(--C);gap:14px">
+        <div class="route">
+          <div class="st">Wafer<small>pre-WCSP bumped</small></div><div class="ar"></div>
+          <div class="st">Dice<small>Singapore</small></div><div class="ar"></div>
+          <div class="st">Pick<small>in-house</small></div><div class="ar"></div>
+          <div class="st">Test + firmware + keys<small>his customers' own</small></div><div class="ar"></div>
+          <div class="st end">Tape &amp; reel<small>SMT-ready</small></div>
+        </div>
+        <div class="dimline"><i></i><i></i><i></i><i></i><i></i><span><em>Every step</em> · already in this deck</span></div>
+      </div>
+      <div class="cols c3 stretch rise">
+        <div class="card hue" style="--c:var(--C)"><span class="k">Why it's better</span><p>His customers hand him <strong>their own keys</strong>, generated however they like, or their own firmware. Whatever they need, built in.</p></div>
+        <div class="card hue" style="--c:var(--C)"><span class="k">Why it's safer</span><p>Keys and firmware are loaded at a step <strong>he owns</strong>. They never pass through a third party.</p></div>
+        <div class="card hue" style="--c:var(--C)"><span class="k">Why it's cheaper</span><p>Packaging and provisioning houses take <strong class="bad">~30%</strong> of his chip cost today.</p></div>
+      </div>
+      <p class="leadTop: CoB, shipping · Bottom: LGA-100 renders, 9.5 mm: lands, carrier rise" style="max-width:none">We've talked it through. He wants to runs it himself</p>
+    </div>
+    <aside class="notes">
+      <p>Which brings me to bunnie. Everything I've shown you so far: sorting a wafer, picking die, testing, loading firmware and keys, putting parts on tape and reel. In my conversations with him, that is exactly what he's interested in. It's the core of what he wants for the Baochip.</p>
+      <p>bunnie went a different route with the Baochip: WCSP, solder bumps right on the die. That removes wirebonding and packaging, and makes the test fixture much easier. He already has sources for the probe tips.</p>
+      <p>What he needs is to get chips off the wafer, test them, load firmware, including his customers' own security keys, and put them into tape and reel.</p>
+      <p>Doing it himself is better for his customers. They can hand him their own keys, generated however they like, or their own custom firmware. Whatever customization they want, he can put on the chip.</p>
+      <p>It's safer, because those keys never pass through a third party. And it's cheaper: that 30% stops going to outside houses. He wants to do it himself, and this grant builds the tools he does it with.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 13 DIVIDER III -->
+  <section class="slide divider plate" data-sect="sg" data-title="Part III — Where, and what">
+    <div class="plate-bg" style="background-image:url('assets/img/globalfoundries.jpg')"></div>
+    <div></div>
+    <div class="stack tight rise">
+      <div class="numeral">SECTION 04</div>
+      <h1>Singapore, Singularly Situated</h1>
+      <p class="lead dim">Singapore, through decisions made decades ago sits in a place to lead open silicon for the world.</p>
+    </div>
+    <aside class="notes"><p>Part three: where this should live, and what exactly I'm asking for.</p></aside>
+  </section>
+
+  <!-- ================================================= 15 ONE ROOM -->
+  <section class="slide" data-sect="sg" data-title="Small package, big value" data-tiers="E">
+    <div class="eyebrow rise"><span class="tag">Singapore</span><span class="rule"></span><span>The niche nobody serves</span></div>
+    <div class="body stack sheet">
+      <div class="stack tight rise">
+        <h2>Small package, <em>big value.</em></h2>
+        <p class="lead">Low-volume, high-mix fits on a bookshelf.</p>
+      </div>
+      <svg class="fig elev rise" viewBox="0 0 1700 420" role="img" aria-label="Elevation drawing of the whole line in one room, drawn to a person for scale: wafers come in, pass a die pick, a wire bonder, a test rig and a tape-and-reel machine on one bench, and the finished reels go onto one bookshelf holding a million dollars of inventory, then out to any SMT line">
+        <defs>
+          <pattern id="elev-hatch" width="18" height="14" patternUnits="userSpaceOnUse"><path class="hatch" d="M0 14 L14 0"/></pattern>
+          <marker id="elev-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="arr" d="M0 0 L10 5 L0 10 z"/></marker>
+        </defs>
+
+        <!-- ground -->
+        <path class="ground" d="M0 400 H1700"/>
+        <rect x="0" y="401" width="1700" height="14" fill="url(#elev-hatch)"/>
+
+        <!-- bench -->
+        <g class="st">
+          <rect x="400" y="256" width="672" height="10"/>
+          <rect x="408" y="266" width="8" height="134"/><rect x="726" y="266" width="8" height="134"/><rect x="1056" y="266" width="8" height="134"/>
+        </g>
+
+        <!-- die pick (sort) -->
+        <g class="mach">
+          <rect x="424" y="228" width="120" height="28"/>
+          <rect x="440" y="221" width="52" height="7"/>
+          <rect x="500" y="218" width="36" height="10"/>
+          <rect x="516" y="150" width="14" height="78"/>
+          <rect x="444" y="150" width="86" height="10"/>
+          <rect x="458" y="160" width="14" height="24"/>
+          <rect x="486" y="160" width="18" height="20"/>
+        </g>
+        <g class="mach-l"><path d="M465 184 V216"/><circle cx="495" cy="185" r="4"/></g>
+
+        <!-- wire bonder -->
+        <g class="mach">
+          <rect x="592" y="224" width="120" height="32"/>
+          <rect x="616" y="216" width="48" height="8"/>
+          <rect x="680" y="146" width="14" height="78"/>
+          <rect x="624" y="166" width="56" height="10"/>
+          <rect x="612" y="160" width="18" height="24"/>
+          <rect x="-7" y="-46" width="14" height="46" transform="translate(668 162) rotate(-35)"/>
+        </g>
+        <g class="mach-l"><path d="M621 184 V216"/><path d="M636 129 l-7 -5 M646 122 l-7 -5"/></g>
+
+        <!-- test rig: socket with its lid open, screen behind -->
+        <g class="mach">
+          <rect x="770" y="216" width="100" height="40"/>
+          <rect x="806" y="206" width="28" height="10"/>
+          <rect x="0" y="-8" width="58" height="8" transform="translate(834 206) rotate(-62)"/>
+          <rect x="754" y="148" width="68" height="44"/>
+          <rect x="784" y="192" width="8" height="24"/>
+        </g>
+        <g class="mach-l"><path d="M764 160 H800 M764 170 H790 M764 180 H806"/></g>
+
+        <!-- tape & reel -->
+        <g class="mach">
+          <rect x="918" y="226" width="140" height="30"/>
+          <circle cx="950" cy="188" r="38"/>
+          <circle cx="1026" cy="188" r="38"/>
+          <rect x="978" y="134" width="20" height="16"/>
+        </g>
+        <g class="mach-l"><circle cx="950" cy="188" r="7"/><circle cx="1026" cy="188" r="7"/><path d="M950 150 H1026"/></g>
+
+        <!-- a person, for scale -->
+        <g class="person">
+          <circle cx="1111" cy="135" r="14"/>
+          <path d="M1111 149 V159 M1096 162 Q1111 157 1126 162 L1123 250 H1099 Z M1097 164 L1087 244 M1125 164 L1135 244 M1102 250 L1097 398 M1120 250 L1125 398 M1097 398 H1087 M1125 398 H1135"/>
+        </g>
+
+        <!-- the shelf -->
+        <g class="st"><path d="M1152 96 V400 M1308 96 V400 M1152 96 H1308 M1152 172 H1308 M1152 248 H1308 M1152 324 H1308 M1152 398 H1308"/></g>
+        <g class="inv">
+          <circle cx="1181" cy="148" r="24"/><circle cx="1230" cy="148" r="24"/><circle cx="1279" cy="148" r="24"/>
+          <circle cx="1181" cy="300" r="24"/><circle cx="1230" cy="300" r="24"/><circle cx="1279" cy="300" r="24"/>
+        </g>
+        <g class="inv hub">
+          <circle cx="1181" cy="148" r="6"/><circle cx="1230" cy="148" r="6"/><circle cx="1279" cy="148" r="6"/>
+          <circle cx="1181" cy="300" r="6"/><circle cx="1230" cy="300" r="6"/><circle cx="1279" cy="300" r="6"/>
+        </g>
+        <g class="inv crate">
+          <rect x="1162" y="208" width="62" height="40"/><rect x="1234" y="208" width="62" height="40"/>
+          <rect x="1162" y="356" width="40" height="42"/><rect x="1208" y="356" width="40" height="42"/><rect x="1254" y="356" width="40" height="42"/>
+        </g>
+
+        <!-- dimensions and notes (appear in order) -->
+        <g class="ann" style="--i:0">
+          <path class="dim" d="M400 250 V30 M1310 66 V30 M400 36 H1310"/>
+          <path class="tick" d="M395 41 L405 31 M1305 41 L1315 31"/>
+          <text class="dimt" x="855" y="26" text-anchor="middle">THE WHOLE LINE · ONE ROOM</text>
+        </g>
+        <g class="ann" style="--i:1">
+          <text class="strong" x="484" y="300" text-anchor="middle">DIE PICK</text><text class="small" x="484" y="324" text-anchor="middle">SORT</text>
+          <text class="strong" x="652" y="300" text-anchor="middle">WIRE BONDER</text><text class="small" x="652" y="324" text-anchor="middle">COB · LGA</text>
+          <text class="strong" x="820" y="300" text-anchor="middle">TEST RIG</text><text class="small" x="820" y="324" text-anchor="middle">DIODE · PUF</text>
+          <text class="strong" x="988" y="300" text-anchor="middle">TAPE &amp; REEL</text><text class="small" x="988" y="324" text-anchor="middle">SMT-READY</text>
+        </g>
+        <g class="ann" style="--i:2">
+          <path class="dim" d="M1152 92 V74 M1308 92 V74 M1152 80 H1308"/>
+          <path class="tick" d="M1147 85 L1157 75 M1303 85 L1313 75"/>
+          <text class="money" x="1230" y="70" text-anchor="middle">$1M</text>
+        </g>
+        <g class="ann" style="--i:3">
+          <text class="strong" x="0" y="238">WAFERS IN</text><text class="small" x="0" y="262">DICED LOCALLY</text>
+          <path class="flow" d="M170 250 H388" marker-end="url(#elev-arr)"/>
+          <path class="flow" d="M1332 250 H1530" marker-end="url(#elev-arr)"/>
+          <text class="strong" x="1700" y="238" text-anchor="end">REELS OUT</text><text class="small" x="1700" y="262" text-anchor="end">TO ANY SMT LINE</text>
+        </g>
+        <g class="ann" style="--i:4">
+          <text class="note" x="1390" y="110">NOTES</text>
+          <text class="note" x="1390" y="136">1. PERSON SHOWN FOR SCALE.</text>
+          <text class="note" x="1390" y="160">2. MACHINES ILLUSTRATIVE.</text>
+        </g>
+      </svg>
+      <div class="tblock rise">
+        <div><span class="k">Footprint</span><span class="v">One bench, one shelf, one room. Dicing stays with a local partner.</span></div>
+        <div><span class="k">Cleanroom</span><span class="v">None. Small, cheap spaces work.</span></div>
+        <div><span class="k">Inventory</span><span class="v"><strong>$1M</strong> of tested, SMT-ready reels on one shelf.</span></div>
+        <div><span class="k">Precedent</span><span class="v">bunnie runs a <strong>high-value trading company</strong> from his apartment.</span></div>
+      </div>
+    </div>
+    <aside class="notes">
+      <p>Small package, big value. This is the niche the big packaging houses can't serve, and it's physically tiny. Here's the whole line, drawn next to a person: one bench with four machines, die pick, wire bonder, test rig, tape and reel, and one bookshelf. The shelf is the point. You can fit a million dollars of chip inventory on a bookshelf.</p>
+      <p>At the low end we don't need a cleanroom or any of the infrastructure the big houses need, so small, cheap spaces work. Wafers come in already diced by a local partner, go down the bench, and leave as reels ready for any SMT line.</p>
+      <p>This isn't hypothetical. bunnie already runs a high-value trading company out of his apartment. Singapore can lead this niche.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 20 HANDOFFS -->
+  <section class="slide" data-sect="line" data-title="Every handoff is a trust boundary" data-tiers="D E">
+    <div class="eyebrow rise"><span class="tag">Custody &amp; traceability</span><span class="rule"></span></div>
+    <div class="body stack">
+      <h2 class="rise">Every handoff is a <em class="bad">trust boundary.</em></h2>
+      <div class="rise">
+        <svg class="fig chain" viewBox="0 0 1700 330" role="img" aria-label="Outsourced chain with seven risky handoffs versus an in-house chain with two">
+          <text class="small" x="0" y="20">OUTSOURCED</text>
+          <g id="chain-out"></g>
+          <text class="small" x="0" y="200" style="fill:var(--raw-mono-1)">IN-HOUSE</text>
+          <g id="chain-in"></g>
+        </svg>
+      </div>
+      <div class="cols c2 top rise">
+        <div class="row" style="gap:12px">
+          <span class="pill bad">die swap</span><span class="pill bad">counterfeit / re-mark</span><span class="pill bad">grey-market overruns</span>
+          <span class="pill bad">tampering</span><span class="pill bad">faked tests</span><span class="pill bad">key leaks</span><span class="pill bad">lost identity</span>
+        </div>
+        <div class="row" style="gap:24px;flex-wrap:nowrap">
+          <figure class="shot" style="width:260px;height:260px;flex:none"><img src="assets/img/bunnie-iris.gif" alt="bunnie's IRIS rig: a camera on a stand imaging a chip, with the live view on a monitor behind it"></figure>
+          <p style="font-size:24px" class="dim">Bunnie built <strong>IRIS</strong> to check chips after packaging. Vertical integration means you don't have to defend against your own supply chain.</p>
+        </div>
+      </div>
+    </div>
+    <aside class="notes">
+      <p>Every time a product passes to another vendor, you add a trust boundary, and each one is an attack surface: die swaps, counterfeits, grey-market overruns, tampering, faked test results, leaked keys.</p>
+      <p>You all know bunnie built IRIS to verify silicon after the fact. That's how little the chain can be trusted. Owning the steps removes most of those handoffs. On MEME, the PUF is the identity, so the die can vouch for itself.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 21 KEEPING COSTS LOW: route split, 56 lines -->
+  <section class="slide" data-sect="line" data-title="Keeping costs low: the route split" data-tiers="B D E">
+    <div class="eyebrow rise"><span class="tag">Where the savings come from</span><span class="rule"></span></div>
+    <div class="body stack">
+      <h2 class="rise">Keeping costs <em>low.</em></h2>
+      <div class="rise">
+        <svg class="fig routes" id="routes56" data-n="56" viewBox="0 0 1700 480" role="img" aria-label="Die life cycle after sort. Partitioned route: every design travels alone through tape and reel, mount, wire bond, package, test, and pack and ship, 6N handoffs. Mixed route: dies are mounted and marked on boards at sort, then bonded, packaged and tested as one stream, and split by design only when packed for shipping, N plus 4 handoffs. Dots mark where a customer can take delivery."></svg>
+      </div>
+      <div class="cols c2-wide rise" style="gap:56px;align-items:end">
+        <div class="stack tight" style="gap:8px">
+          <div class="movebar part quiet" style="width:100%;height:38px">336 handoffs<small>6N · N = 56 designs</small></div>
+          <div class="movebar mix" style="width:17.9%;height:38px">60<small>N+4</small></div>
+        </div>
+        <p style="font-size:24px;max-width:none;margin:0">We don't cut prices. <strong>We cut steps,</strong> and that only works when one operator owns all of them.</p>
+      </div>
+    </div>
+    <aside class="notes">
+      <p>This is the life of a die after the wafer, and the two ways to run it. Sort splits the wafer into N bins, one per design.</p>
+      <p>On top is the partitioned route, the way it's done today. Every design travels alone: N reels, N mounting jobs, a bonder that has to keep N bins apart, N package lots, N test lots, N shipments. Each arrow bundle is N separate moves. That's 6N handoffs, 336 for our 56 designs.</p>
+      <p>On the bottom is the mixed route. Dies go straight from sort onto boards and get marked there, so the tape step disappears. After that everything moves as one stream: one bonding job, one packaging job, one test run for every part. Only when we pack for shipping do we read the marks and split them back out by design. That's N plus 4 moves: 60.</p>
+      <p>The white dots are where a customer can take delivery. For Tim and wafer.space, two of them matter. Bare die off the tape works, but the pads are 75 microns, so customers need precision equipment. A tested package can go on any standard SMT line, and that's what makes open silicon usable for an ordinary hardware designer.</p>
+      <p>This is where our cost advantage comes from. We're not planning to win by simply charging less than everyone else; that isn't a way to run a business. The savings come from the way the operation runs: fewer handoffs, fewer jobs, fewer chances for something to go wrong. And you can only run it this way when one operator owns every step.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 21b KEEPING COSTS LOW: handoff tally -->
+  <section class="slide" data-sect="line" data-title="Keeping costs low: handoff tally" data-tiers="B D E">
+    <div class="eyebrow rise"><span class="tag">Where the savings come from</span><span class="rule"></span></div>
+    <div class="body stack">
+      <h2 class="rise">Keeping costs <em>low.</em></h2>
+      <div class="rise">
+        <svg class="fig handoffs" id="handoffs" data-n="56" viewBox="0 0 1700 666" role="img" aria-label="Handoffs for 56 designs, one mark per handoff. Today each design travels alone through tape and reel, mount, wire bond, package, test, and pack and ship: 336 handoffs. With one operator, all 56 are mounted and marked together, then bonded, packaged and tested as one job each, and split by design only when packed for shipping: 60 handoffs."></svg>
+      </div>
+      <p class="rise" style="font-size:28px;max-width:none">We don't cut prices. <strong>We cut steps,</strong> and that only works when one operator owns all of them.</p>
+    </div>
+    <aside class="notes">
+      <p>This is how we keep costs low. Not by charging less than everyone else, but by the way the line runs.</p>
+      <p>Every mark here is one handoff: a lot moving from one step to the next. On the left is how it's done today. Each of our 56 designs travels alone, so every step handles it 56 times. Six steps, 336 handoffs.</p>
+      <p>On the right is what one operator can do. All 56 designs go onto boards together and each die gets marked, so the tape step disappears. Bonding is one job. Packaging is one job. Test is one run. Only at the very end, when we pack for shipping, do we read the marks and split them back out by design. Sixty handoffs.</p>
+      <p>Fewer handoffs means fewer jobs to schedule, fewer setups, and fewer chances for something to go wrong. And it only works when one operator owns every step.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 14 SINGAPORE -->
+  <section class="slide heart" data-sect="sg" data-title="Singapore: everything is already here" data-tiers="E">
+    <svg class="pearl" viewBox="0 0 1110 808" role="img" aria-label="Singapore drawn as a halftone pearl, rings radiating from Orchard. Markers: Andrew's machines at Orchard, GlobalFoundries at Woodlands, Kulicke and Soffa at Serangoon North, UMC at Pasir Ris, Infineon at Kallang, Changi Airport, October's conferences at Marina Bay, an orchid at the Botanic Gardens">
+      <defs>
+        <radialGradient id="pearl-glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ef3340" stop-opacity="0.14"/><stop offset="0.55" stop-color="#ef3340" stop-opacity="0.05"/><stop offset="1" stop-color="#ef3340" stop-opacity="0"/></radialGradient>
+        <mask id="pearl-outside" maskUnits="userSpaceOnUse" x="-1000" y="-1000" width="3200" height="2800"><rect x="-1000" y="-1000" width="3200" height="2800" fill="#fff"/><g transform="translate(60 190)"><path d="M9.3 405.6 L14.8 412.3 L69.3 426.3 L96.1 414.8 L87.8 408.0 L31.3 407.8 L31.3 395.1 L81.8 395.0 L81.8 380.5 L28.5 380.4 L28.5 369.1 L61.9 369.1 L72.7 364.2 L72.7 354.4 L28.5 354.3 L28.5 343.1 L71.1 343.1 L71.1 328.5 L65.2 328.3 L66.3 313.2 L78.5 312.4 L82.3 304.4 L57.7 260.9 L61.7 252.0 L65.0 258.5 L71.0 260.3 L81.4 250.4 L84.9 253.1 L75.7 264.2 L81.7 270.3 L80.3 272.6 L93.5 260.6 L89.9 269.5 L81.7 276.1 L83.4 278.1 L87.5 274.6 L84.0 278.9 L87.8 276.2 L84.9 280.0 L88.2 277.2 L90.1 279.4 L87.0 282.4 L90.5 279.5 L94.0 282.3 L90.0 286.1 L95.5 283.4 L106.2 292.2 L109.0 297.2 L105.8 300.3 L122.0 286.7 L114.0 278.2 L112.7 268.6 L119.2 267.7 L120.1 275.2 L128.6 284.5 L127.6 279.4 L131.4 283.5 L134.3 282.2 L131.1 266.6 L133.5 262.5 L137.5 280.4 L153.7 277.4 L156.0 266.1 L159.9 265.9 L167.9 275.9 L178.3 275.5 L177.7 266.4 L181.8 265.1 L182.6 283.5 L183.5 279.5 L200.0 279.8 L184.6 268.1 L184.9 264.3 L209.8 278.7 L212.8 276.3 L230.9 280.9 L234.8 277.0 L237.3 277.6 L236.4 282.1 L244.6 285.0 L260.2 280.2 L267.3 287.5 L263.5 294.3 L282.6 305.6 L277.3 314.4 L256.6 302.2 L250.9 303.0 L246.2 310.9 L279.8 331.0 L290.0 313.8 L306.0 323.5 L292.8 345.8 L304.2 352.7 L320.2 325.5 L336.4 340.8 L339.0 334.3 L344.5 336.9 L349.3 334.3 L360.5 341.3 L380.7 332.3 L392.7 332.0 L403.3 341.9 L400.6 335.4 L403.0 333.3 L412.0 343.3 L412.6 323.3 L423.9 329.2 L427.8 336.7 L426.3 331.7 L445.6 316.8 L445.2 310.8 L448.9 308.1 L455.1 310.7 L481.6 289.5 L569.6 262.1 L583.4 260.5 L594.5 254.6 L629.2 251.3 L631.8 256.9 L629.7 259.1 L640.7 255.9 L653.0 261.9 L665.3 260.1 L675.1 263.5 L679.8 260.9 L681.2 253.1 L693.7 253.1 L693.6 246.1 L703.2 245.9 L703.4 252.9 L709.3 252.8 L709.0 238.0 L692.8 236.9 L690.4 233.3 L692.6 224.4 L708.8 191.4 L709.4 182.8 L723.9 190.0 L725.9 199.2 L723.9 188.9 L701.9 174.3 L678.5 163.8 L672.7 166.2 L666.2 164.1 L670.5 158.2 L665.8 156.1 L654.4 132.8 L634.8 125.7 L639.8 131.1 L631.8 126.8 L618.0 127.5 L602.3 142.3 L602.8 145.7 L575.6 143.6 L554.2 131.4 L541.7 115.7 L542.8 108.4 L518.8 86.5 L515.1 88.0 L512.5 80.0 L499.4 81.4 L491.7 86.0 L454.4 62.3 L443.8 66.7 L432.4 77.6 L422.1 73.2 L430.6 57.3 L417.9 35.6 L404.2 35.8 L406.1 39.4 L402.9 36.3 L403.3 26.1 L406.8 34.2 L413.4 30.7 L412.0 25.2 L387.8 9.6 L380.5 15.6 L384.3 8.7 L373.2 2.3 L368.3 11.0 L364.2 5.5 L358.3 10.0 L364.7 1.7 L358.0 -2.6 L336.8 0.4 L340.5 7.1 L336.1 0.8 L330.6 2.6 L280.2 35.3 L277.1 28.6 L278.2 35.0 L266.8 52.6 L245.5 54.5 L236.2 48.7 L226.9 51.0 L226.0 48.3 L224.0 51.3 L225.0 44.7 L213.6 33.8 L201.6 36.0 L199.0 30.8 L185.4 33.8 L174.8 39.5 L156.8 57.6 L127.9 67.2 L122.0 73.8 L117.6 89.7 L119.8 91.9 L102.4 105.6 L104.4 111.1 L100.9 133.4 L94.2 140.6 L86.9 158.9 L83.8 156.7 L80.9 160.3 L62.8 196.2 L60.4 194.2 L56.4 197.6 L59.8 204.1 L54.4 208.8 L57.1 210.0 L55.3 216.9 L35.0 246.6 L34.1 254.6 L36.9 255.7 L40.1 247.3 L43.6 248.6 L29.8 283.7 L32.3 305.6 L17.2 320.4 L16.9 313.9 L11.1 336.8 L16.2 336.8 L16.1 342.6 L9.4 342.7 L16.0 344.1 L16.0 351.2 L9.4 351.6 L19.6 351.6 L19.7 356.0 L9.9 356.1 L14.6 356.5 L14.5 361.2 L9.8 361.2 L14.5 361.6 L14.5 366.5 L9.9 366.8 L20.4 366.8 L20.4 371.3 L9.4 371.3 Z" fill="#000"/><path d="M338.7 345.4 L357.6 361.2 L366.8 364.7 L376.9 377.9 L382.0 380.9 L389.1 379.4 L407.4 357.5 L372.6 353.3 L366.6 346.3 L357.8 344.5 Z" fill="#000"/><path d="M88.2 331.1 L112.7 385.7 L119.9 386.6 L125.8 395.8 L117.9 404.3 L114.2 396.4 L120.2 405.8 L148.3 377.2 L140.9 348.2 L131.4 339.5 L139.3 330.7 L153.5 343.6 L158.1 359.4 L187.2 346.1 L172.0 335.4 L174.9 330.1 L178.8 332.0 L180.4 328.8 L181.4 333.2 L202.5 344.8 L216.7 336.1 L202.9 329.4 L217.3 335.4 L216.4 329.3 L206.6 325.9 L217.8 329.4 L229.9 322.1 L211.9 310.2 L204.5 296.2 L184.5 292.5 L182.6 284.4 L182.5 292.5 L170.9 293.7 L155.8 312.0 L157.7 315.3 L151.3 316.6 L145.1 324.3 L137.9 317.6 L157.0 294.9 L144.0 294.4 L99.1 321.9 L95.9 317.4 L88.3 323.4 Z" fill="#000"/><path d="M535.0 78.1 L542.4 86.5 L548.1 85.6 L548.2 89.0 L571.7 98.7 L587.4 115.8 L607.9 111.6 L613.4 108.3 L612.6 104.9 L620.8 101.6 L643.5 101.3 L640.3 98.4 L642.7 90.3 L639.1 85.1 L632.5 83.5 L622.1 86.8 L606.4 82.7 L588.8 87.7 L548.3 69.5 Z" fill="#000"/></g></mask>
+        <radialGradient id="pearl-ring" cx="0.5" cy="0.5" r="0.5"><stop offset="0.66" stop-color="#36d9bb" stop-opacity="0"/><stop offset="0.85" stop-color="#36d9bb" stop-opacity="1"/><stop offset="1" stop-color="#36d9bb" stop-opacity="0"/></radialGradient>
+      </defs>
+      <ellipse class="glow" cx="470" cy="411" rx="560" ry="360" fill="url(#pearl-glow)"/>
+      <g class="waves" mask="url(#pearl-outside)"><circle class="wave" fill="url(#pearl-ring)" style="--k:0;--o:0.034" cx="453.3" cy="467.9" r="280"/><circle class="wave" fill="url(#pearl-ring)" style="--k:1;--o:0.028" cx="453.3" cy="467.9" r="430"/><circle class="wave" fill="url(#pearl-ring)" style="--k:2;--o:0.022" cx="453.3" cy="467.9" r="580"/><circle class="wave" fill="url(#pearl-ring)" style="--k:3;--o:0.016" cx="453.3" cy="467.9" r="730"/><circle class="wave" fill="url(#pearl-ring)" style="--k:4;--o:0.010" cx="453.3" cy="467.9" r="880"/></g>
+      <image class="isle-img" href="assets/img/sg-pearl.svg" x="60" y="190" width="820" height="443"/>
+          <g transform="translate(1064 6)"><g class="pin" style="--i:8"><path class="f" d="M0 0 A14 14 0 1 0 0 24 A12 12 0 0 1 0 0 Z"/><path class="f" d="M14.0 -0.10000000000000009 l1.1 2.3 2.5 .4-1.8 1.8 .4 2.5-2.2-1.2-2.2 1.2 .4-2.5-1.8-1.8 2.5-.4z M22.1 5.800000000000001 l1.1 2.3 2.5 .4-1.8 1.8 .4 2.5-2.2-1.2-2.2 1.2 .4-2.5-1.8-1.8 2.5-.4z M19.0 15.299999999999999 l1.1 2.3 2.5 .4-1.8 1.8 .4 2.5-2.2-1.2-2.2 1.2 .4-2.5-1.8-1.8 2.5-.4z M9.0 15.299999999999999 l1.1 2.3 2.5 .4-1.8 1.8 .4 2.5-2.2-1.2-2.2 1.2 .4-2.5-1.8-1.8 2.5-.4z M5.9 5.800000000000001 l1.1 2.3 2.5 .4-1.8 1.8 .4 2.5-2.2-1.2-2.2 1.2 .4-2.5-1.8-1.8 2.5-.4z"/></g></g>
+          <g class="pin ours" style="--i:0"><path class="lead-ln" d="M453.3 467.9 L330 650 H316"/><g transform="translate(453.3 467.9)"><circle class="halo core" r="15"/><circle class="s" cx="-5" cy="3" r="7.5"/><circle class="f" cx="-5" cy="3" r="1.6"/><path class="l" d="M-14 -9 H14 M8 -9 V-1 M5 -1 H11"/><path class="f" d="M6.5 -1 h3 v3 h-3 z"/></g><text x="308" y="646" text-anchor="end">ORCHARD · MY MACHINES</text><text class="note" x="308" y="664" text-anchor="end">die pick and tape &amp; reel, in hand</text></g>
+          <g class="pin" style="--i:1"><path class="lead-ln" d="M366.7 231.0 L367 130 H353"/><g transform="translate(366.7 231.0)"><circle class="halo" r="16"/><circle class="s" r="9"/><path class="d" d="M-3.5 -8.3 V8.3 M3.5 -8.3 V8.3 M-8.3 -3.5 H8.3 M-8.3 3.5 H8.3"/></g><text x="345" y="126" text-anchor="end">WOODLANDS · GLOBALFOUNDRIES</text><text class="note" x="345" y="144" text-anchor="end">wafer.space wafers are made here</text></g>
+          <g class="pin" style="--i:2"><path class="lead-ln" d="M504.4 347.5 L640 92 H654"/><g transform="translate(504.4 347.5)"><circle class="halo" r="16"/><path class="l" d="M-12 6 H12"/><rect class="s" x="-5.5" y="0" width="11" height="6"/><path class="l" d="M-5.5 1 Q-8 -7 -12 -4.5 M5.5 1 Q8 -7 12 -4.5"/><path class="f" d="M-14 -5.5 h3 v2 h-3 z M11 -5.5 h3 v2 h-3 z"/></g><text x="662" y="88" text-anchor="start">SERANGOON NORTH · KULICKE &amp; SOFFA</text><text class="note" x="662" y="106" text-anchor="start">most of the world's wire bonders</text></g>
+          <g class="pin" style="--i:3"><path class="lead-ln" d="M499.5 431.1 L700 560 H714"/><g transform="translate(499.5 431.1)"><circle class="halo" r="16"/><rect class="s" x="-7.5" y="-5.5" width="15" height="11"/><path class="l" d="M-7.5 -3 h-3.5 M-7.5 0 h-3.5 M-7.5 3 h-3.5 M7.5 -3 h3.5 M7.5 0 h3.5 M7.5 3 h3.5"/><circle class="f" cx="-3.5" cy="-2" r="1.2"/></g><text x="722" y="556" text-anchor="start">KALLANG · INFINEON</text><text class="note" x="722" y="574" text-anchor="start">assembly and test for automotive MCUs</text></g>
+          <g class="pin" style="--i:6"><path class="lead-ln" d="M642.2 344.2 L760 250 H774"/><g transform="translate(642.2 344.2)"><circle class="halo" r="16"/><circle class="s" r="9"/><path class="d" d="M-3.5 -8.3 V8.3 M3.5 -8.3 V8.3 M-8.3 -3.5 H8.3 M-8.3 3.5 H8.3"/></g><text x="782" y="246" text-anchor="start">PASIR RIS · UMC</text><text class="note" x="782" y="264" text-anchor="start">22 nm fab, opened 2025</text></g>
+          <g class="pin" style="--i:4"><path class="lead-ln" d="M699.6 375.4 L905 375 H919"/><g transform="translate(699.6 375.4)"><circle class="halo" r="16"/><g transform="rotate(-35)"><path class="l" d="M-11 0 H11 M-3 -1 L-8 -9 M-3 1 L-8 9 M8 -1 L5.5 -4.5 M8 1 L5.5 4.5"/><path class="f" d="M9 -1.5 L13 0 L9 1.5 Z"/></g></g><text x="927" y="371" text-anchor="start">CHANGI AIRPORT</text><text class="note" x="927" y="389" text-anchor="start">where they'd fly in</text></g>
+          <g class="pin" style="--i:5"><path class="lead-ln" d="M486.4 495.1 L548 650 H562"/><g transform="translate(486.4 495.1)"><circle class="halo" r="16"/><path class="s" d="M-10 10 V-3 H-5 V10 Z M-2.5 10 V-3 H2.5 V10 Z M5 10 V-3 H10 V10 Z"/><path class="s" d="M-13.5 -4 H12 L14 -7.5 H-11 Z"/></g><text x="570" y="646" text-anchor="start">MARINA BAY SANDS · SANDS EXPO</text><text class="note" x="570" y="664" text-anchor="start">SEMICON SEA 2025 was here: 26,000 people</text></g>
+          <g transform="translate(414.3 444.3)"><g class="pin quiet" style="--i:7"><circle class="halo" r="13"/><ellipse class="s" rx="3" ry="7.5" cy="-5.5" transform="rotate(0)"/><ellipse class="s" rx="3" ry="7.5" cy="-5.5" transform="rotate(72)"/><ellipse class="s" rx="3" ry="7.5" cy="-5.5" transform="rotate(144)"/><ellipse class="s" rx="3" ry="7.5" cy="-5.5" transform="rotate(216)"/><ellipse class="s" rx="3" ry="7.5" cy="-5.5" transform="rotate(288)"/><circle class="f" r="2"/></g></g>
+      <text class="cap" x="60" y="790">SINGAPORE · ≈735 KM² · EVERYTHING WITHIN AN HOUR</text>
+      <text class="cap credit" x="1110" y="790" text-anchor="end">COASTLINE © OPENSTREETMAP CONTRIBUTORS</text>
+    </svg>
+    <div class="eyebrow rise"><span class="tag">Singapore</span><span class="rule"></span></div>
+    <div class="body stack pearl-copy">
+      <div class="stack tight rise">
+        <h2>Everything is <em>already here.</em></h2>
+        <p class="lead">The last mile. A little red dot.</span></p>
+      </div>
+      <p class="rise"><span class="chain">Fabbing <i></i> Dicing <i></i> Sorting <i></i> Bonding <i></i> Packaging <i></i> Testing <i></i> Sharing</span><span class="payoff">All within an hour of each other.</span></p>
+      <p class="small-line rise">Small is the fit. <em>Small is beautiful.</em></p>
+      <dl class="here rise">
+        <div><dt>Fab</dt><dd>GlobalFoundries · UMC</dd></div>
+        <div><dt>Test</dt><dd>Infineon, at Kallang</dd></div>
+        <div><dt>Dicing</dt><dd>DISCO · MEDS</dd></div>
+        <div><dt>Wire bonding</dt><dd>Kulicke &amp; Soffa · Yamaha Robotics</dd></div>
+        <div><dt>Events</dt><dd>IEEE ICTA, Oct 21–24 · TechInsights CMC, Oct 28</dd></div>
+        <div><dt>Venues</dt><dd>Marina Bay Sands · Suntec · Singapore EXPO</dd></div>
+        <div class="ours"><dt>My machines</dt><dd>Die pick · Tape &amp; reel, at Orchard</dd></div>
+      </dl>
+      <p class="closing rise">I believe Singapore could be the <em>beating heart</em> of open silicon.</p>
+    </div>
+    <aside class="notes">
+      <p>Why Singapore? Look at it. A little red dot, and everything the last mile needs is already on it. The red is your flag's red; this slide is the one place in the deck where red means love, not a problem. The rings on the map spread out from Orchard, because that's where my machines are: the die pick and the tape-and-reel, in hand today.</p>
+      <p>You said it yourself: decades ago Singapore chose to put fabs on this island. GlobalFoundries makes the wafer.space wafers at Woodlands. UMC opened a new 22-nanometer fab at Pasir Ris last year, and it makes Infineon's automotive microcontrollers. Infineon itself runs the back end here: its Kallang site assembles and tests those microcontrollers, and the World Economic Forum names it one of its Lighthouse factories. That's our part of the chain, already done at automotive scale on this island. Kulicke &amp; Soffa, who make most of the world's wire bonders, are headquartered at Serangoon North, so the engineers, the parts and the service are all local. Dicing is local too: DISCO and MEDS have both cut wafers for wafer.space. And the industry meets here. This October alone, IEEE ICTA and the TechInsights Critical Materials Council seminar, both downtown. And when the industry needs a big room, Singapore has them: SEMICON Southeast Asia came back here last year, to Sands Expo at Marina Bay Sands, with twenty-six thousand people. Suntec is downtown and Singapore EXPO is next to the airport. Everything on this map is within an hour of everything else.</p>
+      <p>Singapore is small, and this line is small. That's the fit: a small, high-value line on a small, high-value island. This kind of work brings some of the smartest people in open silicon through Changi, and I think they'll love it here too. (The little orchid is the Botanic Gardens. Small, and beautiful.)</p>
+      <p>We'd be a customer and complement to the industry here, not a competitor. I believe Singapore could be the beating heart of open silicon.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 25 ECOSYSTEM -->
+  <section class="slide" data-sect="close" data-title="Lifting the whole ecosystem" data-tiers="A B C D E">
+    <div class="eyebrow rise"><span class="tag">Closing</span><span class="rule"></span><span>Since Run 1</span></div>
+    <div class="body stack">
+      <h2 class="rise">Lifting the <em>whole ecosystem.</em></h2>
+      <div class="cols c5 stretch ben rise">
+        <div class="card"><h4>Security researchers</h4><p class="dim">An open PUF dataset. Is it truly random?</p><span class="chips"><span class="chip A">A</span></span></div>
+        <div class="card"><h4>wafer.space</h4><p class="dim">A standard tester and SMT-ready parts for every customer.</p><span class="chips"><span class="chip B">B</span><span class="chip D">D</span></span></div>
+        <div class="card"><h4>bunnie</h4><p class="dim">His own line. Keys stay in his hands, and the 30% cut is gone.</p><span class="chips"><span class="chip C">C</span></span></div>
+        <div class="card"><h4>Every designer</h4><p class="dim">A path from 1,000 dies to assembled boards.</p><span class="chips"><span class="chip B">B</span><span class="chip D">D</span><span class="chip E">E</span></span></div>
+        <div class="card"><h4>Singapore</h4><p class="dim">A new low-volume, high-mix niche.</p><span class="chips"><span class="chip E">E</span></span></div>
+      </div>
+      <p class="lead rise" style="max-width:52ch">You've backed open silicon since Run 1. This is the next layer. <strong>MEME is the first chip through the last mile. It won't be the last.</strong></p>
+    </div>
+    <aside class="notes">
+      <p>Every tool built here gets reused. Security researchers get an open PUF dataset. wafer.space gets a standard tester and SMT-ready packaging. bunnie gets his own line. Every future open-silicon designer gets a path from a thousand dies to a working board. And Singapore gets a new niche.</p>
+      <p>You've backed open silicon since Cloneless1 on Run 1. This is the next layer. MEME is the first chip through, and it won't be the last.</p>
+    </aside>
+  </section>
+
+  <!-- ================================================= 26 THANKS -->
+  <section class="slide" data-sect="close" data-title="Thank you" data-tiers="A B C D E">
+    <div class="eyebrow rise"><span class="tag">Closing</span><span class="rule"></span><span>Thank you</span></div>
+    <div class="body cols c2">
+      <div class="stack">
+        <h1 class="rise">Thank you.</h1>
+        <p class="lead rise">Andrew Wingate · Evezor Inc.</p>
+        <p class="rise" style="font-family:var(--mono);font-size:26px;color:var(--raw-mono-1)">evezor.com</p>
+        <p class="dim rise">Pick from the menu. I'll build to suit.</p>
+      </div>
+      <div class="menu-home rise">
+        <span class="k">The menu · fund as far down as you like</span>
+        <div class="t" style="--i:0;--c:var(--A)"><span class="chip lg A">A</span><div><h4>PUF characterization</h4><p>An open dataset from 2,000 chips</p></div></div>
+        <div class="t" style="--i:1;--c:var(--B)"><span class="chip lg B">B</span><div><h4>Standard test rig</h4><p>Every wafer.space chip checked</p></div></div>
+        <div class="t" style="--i:2;--c:var(--C)"><span class="chip lg C">C</span><div><h4>bunnie's Baochip flow</h4><p>His own line, his keys</p></div></div>
+        <div class="t" style="--i:3;--c:var(--D)"><span class="chip lg D">D</span><div><h4>SMT packaging</h4><p>CoB done, LGA next</p></div></div>
+        <div class="t" style="--i:4;--c:var(--E)"><span class="chip lg E">E</span><div><h4>Singapore line</h4><p>Low-volume, high-mix, made here</p></div></div>
+      </div>
+    </div>
+    <aside class="notes"><p>Thank you for watching. Here's the menu one more time. A, the PUF data. B, the standard tester for every wafer.space chip. C, bunnie's own line. D, SMT-ready packaging. E, a line in Singapore. Each one stands on its own and sets up the next. Pick any combination, fund as far down as you like, and I'll build to suit. I'm happy to walk through any of it live.</p></aside>
+  </section>
+
+  <!-- persistent chrome (inside the stage so it scales with it) -->
+  <i class="reg tl"></i><i class="reg tr"></i><i class="reg bl"></i><i class="reg br"></i>
+  <div class="tiers" aria-hidden="true"><span class="chip A">A</span><span class="chip B">B</span><span class="chip C">C</span><span class="chip D">D</span><span class="chip E">E</span></div>
+  <div class="sect-label"></div>
+  <div class="brand"><img src="assets/img/evezor-logo.png" alt=""><span>The Back End of Open Silicon</span></div>
+  <div class="hud"><b class="cur">01</b> / <span class="total">00</span></div>
+  <div class="rail"><i></i></div>
+
+</div>
+</div>
+
+<div id="notes-pane"></div>
+<div id="help"><div class="box">
+  <div><kbd>→</kbd> next · <kbd>←</kbd> previous · <kbd>Space</kbd> next</div>
+  <div><kbd>Home</kbd> first · <kbd>End</kbd> last</div>
+  <div><kbd>O</kbd> overview · <kbd>F</kbd> fullscreen</div>
+  <div><kbd>N</kbd> notes pane · <kbd>P</kbd> presenter window (2nd screen)</div>
+  <div><kbd>?</kbd> this help · <kbd>Esc</kbd> close</div>
+</div></div>
+
+<script src="assets/js/deck.js"></script>
+<script src="assets/js/demos.js"></script>
+</body>
+</html>
