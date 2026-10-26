@@ -6,7 +6,9 @@ Andrew Wingate · Evezor Inc. · [evezor.com](https://evezor.com)
 
 ## View the slides
 
-Open `index.html` in a browser, or use the GitHub Pages link. There's no build step. The deck is a fixed 1920×1080 stage that scales to fit the window.
+**Live: [anfroholic.github.io/silicon_grant](https://anfroholic.github.io/silicon_grant/)**
+
+Or open `index.html` in a browser. There's no build step. The deck is a fixed 1920×1080 stage that scales to fit the window.
 
 | Key | Action |
 | --- | --- |

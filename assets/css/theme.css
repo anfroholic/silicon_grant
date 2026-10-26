@@ -314,6 +314,12 @@ blockquote .src {
 .brand img { height: 22px; width: auto; opacity: 0.55; }
 .hud { right: 110px; font-variant-numeric: tabular-nums; }
 .hud b { color: var(--dim); font-weight: 500; }
+/* where to find the slideshow: under the brand, every slide */
+.site-link {
+  position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 21;
+  font-family: var(--mono); font-size: 15px; letter-spacing: 0.06em; color: #4f6660; text-decoration: none;
+}
+.site-link:hover { color: var(--dim); }
 
 /* A-E tier strip: every slide, top right, on the eyebrow line. The letters a slide serves light up
    (data-tiers="A E" on its <section>; deck.js toggles .on). The rest stay dim. */
@@ -364,7 +370,7 @@ blockquote .src {
 }
 #stage.overview .slide.active { outline: 6px solid var(--raw-mono-1); }
 #stage.overview .slide * { animation: none !important; }
-#stage.overview > .rail, #stage.overview > .brand, #stage.overview > .hud, #stage.overview > .sect-label, #stage.overview > .reg { display: none; }
+#stage.overview > .rail, #stage.overview > .brand, #stage.overview > .hud, #stage.overview > .sect-label, #stage.overview > .site-link, #stage.overview > .reg { display: none; }
 
 /* =============================================================================
    SLIDE-SPECIFIC FIGURES
